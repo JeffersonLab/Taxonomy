@@ -21,6 +21,18 @@ Via Composer
 ``` bash
 $ composer require jlab/taxonomy
 ```
+## Database
+
+The package contains database migrations that will create two tables named
+terms and vocabularies.  To instantiate the tables, 
+you must run the ```php artisan migraate``` command.
+```bash
+$ php artisan migrate
+Migrating: 2018_04_12_090732_create_vocabularies_table
+Migrated:  2018_04_12_090732_create_vocabularies_table
+Migrating: 2018_04_12_090740_create_terms_table
+Migrated:  2018_04_12_090740_create_terms_table
+```
 
 ## Usage
 
