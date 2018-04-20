@@ -4,7 +4,7 @@
  *
  */
 
-namespace JLab\Taxonomy;
+namespace Jlab\Taxonomy;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

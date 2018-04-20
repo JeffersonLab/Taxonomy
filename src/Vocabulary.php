@@ -1,6 +1,6 @@
 <?php
 
-namespace JLab\Taxonomy;
+namespace Jlab\Taxonomy;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -53,6 +53,19 @@ class Vocabulary extends Model
         return new \Illuminate\Support\Collection();
     }
 
+
+    /**
+     * Returns the root terms formatted as a string
+     *   name | description
+     *   name | description
+     */
+    public function rootTermsFormValue(){
+        $string = '';
+        foreach ($this->rootTerms() as $term){
+            $string .= $term->name .' | '.$term->description."\n";
+        }
+        return $string;
+    }
 
 
 }
