@@ -32,3 +32,8 @@ Route::get('taxonomy/terms/{id}', [
 'as' => 'api.terms.item',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsItem'
 ]);
+
+Route::get('taxonomy/forms', [
+    'as' => 'api.forms',
+    'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@forms'
+]);

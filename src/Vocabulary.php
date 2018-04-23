@@ -48,7 +48,7 @@ class Vocabulary extends Model
     {
         if ($this->terms) {
             return $this->terms->where('parent_id', '')
-                ->sortBy('weight')->sortBy('name');
+                ->sortBy(['weight','name']);
         }
         return new \Illuminate\Support\Collection();
     }

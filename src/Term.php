@@ -7,6 +7,7 @@
 namespace Jlab\Taxonomy;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Collection;
 use Kalnoy\Nestedset\NodeTrait;         // https://github.com/lazychaser/laravel-nestedset
 
@@ -167,6 +168,39 @@ class Term extends Model
     public function setParentAttribute($value)
     {
         $this->setParentIdAttribute($value);
+    }
+
+    /**
+     * Returns array of attributes suitable for api clients
+     *
+     * @return array
+     */
+    public function apiArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'url' => $this->url,
+            'vocabulary_id' => $this->vocabulary_id,
+            'weight' => $this->weight,
+        ];
+    }
+
+    public static function form(array $attributes)
+    {
+        if (isset($attributes['id'])) {
+            $term = static::find($attributes['id']);
+        } else {
+            $term = new static($attributes);
+        }
+
+        if (!$term->vocabulary_id) {
+            throw new Exception ('Vocabulary_id is required when adding a taxonomy term.');
+        }
+
+        return View::make('taxonomy::terms.form')
+            ->with('term', $term);
     }
 }
 

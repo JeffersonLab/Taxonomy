@@ -29,8 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jlab\\Taxonomy\\": "src",
-            "Jlab\\Taxonomy\\Http\\Controllers\\": "src/Http/Controllers"
+            "Jlab\\Taxonomy\\": "src"
         }
     },
     "autoload-dev": {

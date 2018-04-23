@@ -44,6 +44,25 @@ may be skipped.
 php artisan  vendor:publish --provider='Jlab\Taxonomy\TaxonomyServiceProvider'
 ```
 
+Add the following to your config/app.php file
+```
+	...
+	
+	'providers' => array(
+		...
+		Lord\Laroute\LarouteServiceProvider::class,
+	],
+	
+	...
+```
+
+And then execute
+
+```
+php artisan laroute:generate
+```
+
+
 And then execute laroute so that necessary routes will be available in
 
 ## Database

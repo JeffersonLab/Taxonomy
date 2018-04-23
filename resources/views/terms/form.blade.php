@@ -7,14 +7,14 @@
         ->action(route('api.terms.update', [$term->id]))
         ->method('PUT')
         ->autocomplete('off')
-        ->rules(Atlis\Taxonomy\Term::$rules)
+        ->rules(Jlab\Taxonomy\Term::$rules)
     !!}
 @else
     {!! Former::open()->id('termForm')
         ->action(route('api.terms.create'))
         ->method('POST')
         ->autocomplete('off')
-        ->rules(Atlis\Taxonomy\Term::$rules)
+        ->rules(Jlab\Taxonomy\Term::$rules)
 
     !!}
 @endif

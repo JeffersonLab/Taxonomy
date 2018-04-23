@@ -2,9 +2,8 @@
 
 namespace Jlab\Taxonomy\Http\Controllers;
 
-//use App\Http\Requests\OwnershipFormRequest;
-use App\Http\Requests\TermFormRequest;
-//use Atlis\Auth\Ownable;  //why?
+
+use Jlab\Taxonomy\Http\Requests\TermFormRequest;
 use Jlab\Taxonomy\Term;
 use Jlab\Taxonomy\Vocabulary;
 use Illuminate\Http\Request;
@@ -98,41 +97,6 @@ class ApiController extends Controller
         return $this->error('Model name missing or not recognized.');
     }
 
-    /**
-     * Centralized handling of requests to update model ownership
-     *
-     * Expects the request to contain the following
-     *   pk    : string like class:id
-     *   name  : users | groups
-     *   value :
-     *
-     * @return mixed
-     */
-    public function owners(OwnershipFormRequest $request){
-
-        try{
-            list($class, $id) = explode(':', $request->input('pk'));
-            $values = preg_split('/[\s,\n]+/',$request->input('value'));
-
-            $model = null;
-            switch ($class){
-                case 'vocabulary' : $model = Vocabulary::findOrFail($id); break;
-            }
-
-            if (in_array(Ownable::class, class_implements($model))){
-                switch ($request->input('name')){
-                    case 'users' : $model->setUsers($values); break;
-                    case 'groups' : $model->setGroups($values); break;
-                }
-            }
-            return $this->response('success');
-        } catch (\Exception $e){
-            return $this->error($e->getMessage());
-        }
-
-        return $this->error('Something went wrong');
-
-    }
 
     /**
      * Centralized handling of requests for ajax delete requests

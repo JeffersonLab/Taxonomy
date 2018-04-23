@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Http\Requests;
+namespace Jlab\Taxonomy\Http\Requests;
 
-use Atlis\Taxonomy\Term;
-use Atlis\Taxonomy\Vocabulary;
+use Jlab\Taxonomy\Term;
+use Jlab\Taxonomy\Vocabulary;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;

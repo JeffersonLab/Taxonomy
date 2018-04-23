@@ -80,8 +80,9 @@
 
 
 
-    {{--@include('includes.modal', [$modal_id='editItem', $modal_title='Edit Term']);--}}
+    @include('taxonomy::includes.modal', [$modal_id='editItem', $modal_title='Edit Term'])
 
+    <script src="{{asset('js/laroute.js')}}"></script>
     <script src="{{asset('vendor/jlab/taxonomy/js/taxonomy.js')}}"></script>
 
     <script>
