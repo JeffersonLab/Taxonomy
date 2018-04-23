@@ -14,6 +14,17 @@ below taken from the Drupal documentation:
   *  Sub-term = Swing
   *  Sub-term = Fusion 
 
+
+## Prerequisites
+
+In order to use the javascript resources included with this package, the laravel package that is including
+it must load the following javascript packages:
+* jquery
+* bootstrap 3
+* bootbox
+* lodash
+
+
 ## Install
 
 Via Composer
@@ -21,6 +32,20 @@ Via Composer
 ``` bash
 $ composer require jlab/taxonomy
 ```
+
+## Configure
+
+After installation, it is necessary to publish the package's public js and css
+resources into your pacakage's public/vendor area.  Assuming that you wish to use
+them.  If using only the back-end features (e.g Model) of the package, the steps here
+may be skipped.
+
+``` bash
+php artisan  vendor:publish --provider='Jlab\Taxonomy\TaxonomyServiceProvider'
+```
+
+And then execute laroute so that necessary routes will be available in
+
 ## Database
 
 The package contains database migrations that will create two tables named

@@ -57,7 +57,7 @@ class VocabularyController extends Controller
                     }
                     DB::commit();
                     Notification::success("The vocabulary was created");
-                    return redirect()->action('VocabularyController@show',[$vocabulary->id]);
+                    return redirect()->action('\Jlab\Taxonomy\Http\Controllers\VocabularyController@show',[$vocabulary->id]);
                 }catch (Exception $e){
                     $msg = "An error was encountered and terms could not be added: ";
                     Notification::warning($msg.$e->getMessage());
@@ -114,7 +114,7 @@ class VocabularyController extends Controller
         $vocabulary->fill($request->input());
         if ($vocabulary->save()){
             Notification::success("The vocabulary was updated");
-            return redirect()->action('VocabularyController@show',[$vocabulary->id]);
+            return redirect()->action('\Jlab\Taxonomy\Http\Controllers\VocabularyController@show',[$vocabulary->id]);
         }else{
             Notification::error('Failed to save the vocabulary');
         }

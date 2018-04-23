@@ -30,6 +30,10 @@ class TaxonomyServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views','taxonomy');
 
+        $this->publishes([
+            __DIR__.'/../resources/assets/js/' => public_path('vendor/jlab/taxonomy/js/'),
+        ], 'public');
+        
         $this->app->make('Illuminate\Database\Eloquent\Factory')->load(__DIR__ . '/../database/factories');
     }
 
