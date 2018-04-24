@@ -36,6 +36,9 @@ class Vocabulary extends Model
     }
 
 
+    public function hasTermId($id){
+        return $this->terms()->where('id', $id)->exists();
+    }
 
     /**
      * Returns a collection of the vocabulary's root terms.
