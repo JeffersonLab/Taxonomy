@@ -24,7 +24,7 @@ class TaxonomyServiceProvider extends ServiceProvider
         // Must include the bindings middleware in order to get 
         // route model binding in a package like this.
         Route::group([
-            'middleware' => ['bindings'],
+            'middleware' => ['web','bindings'],
             'prefix' => '',
             'namespace' => '',
         ], function () {
