@@ -139,7 +139,6 @@ class VocabularyController extends Controller
     public function destroy(Vocabulary $vocabulary)
     {
         $this->authorize('delete', $vocabulary);
-
         if ($vocabulary->delete()){
             Notification::success("Vocabulary $vocabulary->name was deleted");
         }else{

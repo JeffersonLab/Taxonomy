@@ -54,7 +54,8 @@ class ApiController extends Controller
         }
         return $this->error('Invalid id to update');
     }
-    
+
+
     public function termUsers(Term $term, Request $request){
 
         try {

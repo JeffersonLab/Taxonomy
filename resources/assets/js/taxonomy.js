@@ -51,8 +51,8 @@ taxonomy.reorderTerms = function (parent, terms) {
 
 taxonomy.deleteItemDialog = function () {
     var wrapperElem = $(this).parent('.actions-wrapper');
-    var deleteQuery = taxonomy.dataToQueryString(wrapperElem);
-    var deleteUrl = laroute.route('api.deletions') + deleteQuery;
+    //var deleteQuery = taxonomy.dataToQueryString(wrapperElem);
+    var deleteUrl = laroute.route('api.terms.delete',{'id':wrapperElem.data('id')});
     var confirm = $(this).data('confirm');
     bootbox.confirm("Are you sure you want to delete <b>" + confirm + "</b>?<br /><br />"
         + "Press OK if you want to proceed with removal.",

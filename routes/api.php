@@ -23,6 +23,11 @@ Route::put('taxonomy/terms/{id}', [
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsUpdate'
 ]);
 
+Route::delete('taxonomy/terms/{id}', [
+    'as' => 'api.terms.delete',
+    'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsDelete'
+]);
+
 Route::put('taxonomy/terms/{id}/users', [
 'as' => 'api.terms.users',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termUsers'
@@ -37,3 +42,4 @@ Route::get('taxonomy/forms', [
     'as' => 'api.forms',
     'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@forms'
 ]);
+
