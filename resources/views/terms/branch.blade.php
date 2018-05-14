@@ -6,7 +6,7 @@
         <div class="taxonomy-actions actions-wrapper"
              data-model="term" data-id="{{$term->id}}"
              data-vocabulary_id="{{$term->vocabulary_id}}">
-            {{--@can('update', $vocabulary)--}}
+            @can('update', $vocabulary)
                 <a href="#" class="btn-xs btn-default btn-edit">
                     <i class="glyphicon glyphicon-edit"></i>Edit
                 </a>
@@ -15,7 +15,7 @@
                         <i class="glyphicon glyphicon-trash"></i>Delete
                     </a>
                 @endif
-            {{--@endcan--}}
+            @endcan
 
         </div>
     </div>

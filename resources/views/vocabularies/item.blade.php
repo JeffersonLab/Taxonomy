@@ -41,12 +41,12 @@
     <div class="container-fluid">
         <h2>Vocabulary {{$vocabulary->name}}</h2>
 
-        {{--@can('update', $vocabulary)--}}
+        @can('update', $vocabulary)
 
             <a class="btn btn-sm btn-default" href="{{route('vocabularies.edit',[$vocabulary->id])}}" role="button">
                 <i class="glyphicon glyphicon-edit">Edit</i>
             </a>
-        {{--@endcan--}}
+        @endcan
     </div>
 
     <div class="container-fluid">
@@ -57,12 +57,12 @@
         </div>
 
         <h3>Terms</h3>
-        {{--@can('update', $vocabulary)--}}
+        @can('update', $vocabulary)
             <div class="container actions-wrapper" data-model="term" data-vocabulary_id="{{$vocabulary->id}}"
                  role="button">
                 <a href="#" class="btn btn-sm btn-default btn-add"><i class="glyphicon glyphicon-plus"></i>Add</a>
             </div>
-        {{--@endcan--}}
+        @endcan
 
         @if ( $vocabulary->terms->count() > 0)
             <ol id="term-0" class="sortable">

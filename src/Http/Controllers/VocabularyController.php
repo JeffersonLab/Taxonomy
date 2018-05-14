@@ -33,6 +33,8 @@ class VocabularyController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Vocabulary::class);
+
         return View::make('taxonomy::vocabularies.edit')
             ->with('vocabulary', new Vocabulary())
             ->with('formAction', action('\Jlab\Taxonomy\Http\Controllers\VocabularyController@store'))
@@ -47,8 +49,9 @@ class VocabularyController extends Controller
      */
     public function store(VocabularyFormRequest $request)
     {
+        $this->authorize('create', Vocabulary::class);
+
         $vocabulary = new Vocabulary($request->input());
-        //dd($request->input());
         DB::beginTransaction();
         if ($vocabulary->save()){
                 try{
@@ -96,6 +99,8 @@ class VocabularyController extends Controller
      */
     public function edit(Vocabulary $vocabulary)
     {
+        $this->authorize('update', $vocabulary);
+
         return View::make('taxonomy::vocabularies.edit')
             ->with('vocabulary', $vocabulary)
             ->with('formAction', action('\Jlab\Taxonomy\Http\Controllers\VocabularyController@update',['id' => $vocabulary->id]))
@@ -111,6 +116,8 @@ class VocabularyController extends Controller
      */
     public function update(VocabularyFormRequest $request, Vocabulary $vocabulary)
     {
+        $this->authorize('update', $vocabulary);
+
         $vocabulary->fill($request->input());
         if ($vocabulary->save()){
             Notification::success("The vocabulary was updated");
@@ -131,6 +138,8 @@ class VocabularyController extends Controller
      */
     public function destroy(Vocabulary $vocabulary)
     {
+        $this->authorize('delete', $vocabulary);
+
         if ($vocabulary->delete()){
             Notification::success("Vocabulary $vocabulary->name was deleted");
         }else{

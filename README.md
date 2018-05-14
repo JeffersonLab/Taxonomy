@@ -78,6 +78,22 @@ Migrating: 2018_04_12_090740_create_terms_table
 Migrated:  2018_04_12_090740_create_terms_table
 ```
 
+## Authorization
+In order to enable editing actions in the included views, it's necessary to register 
+a Taxonomy Policy such as the default `TaxonomyPolicy` class included with the package 
+which allows any authenticated user to create or edit taxonomy vocabularies and their terms.
+
+The default policy can be registered by adding the following to the Laravel Application's `AuthServiceProvider`
+
+```php
+    protected $policies = [
+        \Jlab\Taxonomy\Vocabulary::class => \Jlab\Taxonomy\Policies\TaxonomyPolicy::class,
+    ];
+```
+
+Naturally, if the application requirements demand a different authorization scheme, an alternate `TaxonomyPolicy` class 
+may be mapped instead.
+
 ## Usage
 
 ### Creating Vocabulary and Terms
