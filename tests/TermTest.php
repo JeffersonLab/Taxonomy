@@ -138,6 +138,18 @@ class TermTest extends TestCase
     }
 
 
+    function test_children_are_sorted_by_insertion_order(){
+        $parent = factory(Term::class)->create();
+        $parent->children()->save(new Term(['name'=>'Alpha','weight'=>30,'vocabulary_id'=>$parent->vocabulary_id]));
+        $parent->children()->save(new Term(['name'=>'Beta','weight'=>20,'vocabulary_id'=>$parent->vocabulary_id]));
+        $parent->children()->save(new Term(['name'=>'Gamma','weight'=>10,'vocabulary_id'=>$parent->vocabulary_id]));
+        $parent->fresh();
+        $this->assertCount(3, $parent->children);
+        $this->assertEquals('Alpha', $parent->children->first()->name);
+        $this->assertEquals('Gamma', $parent->children->last()->name);
+    }
+
+
     /**
      * Exercise rule that term names must be unique within
      * a vocabulary.

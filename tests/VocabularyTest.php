@@ -84,6 +84,30 @@ class VocabularyTest extends TestCase
 
     }
 
+    function test_root_terms_are_sorted_by_weight(){
+        $vocabulary = new Vocabulary(['name' => 'Alpha', 'description' => "Letters"]);
+        $vocabulary->save();
+        $vocabulary->terms()->save(new Term(['name'=>'Alpha', 'weight'=>10]));
+        $vocabulary->terms()->save(new Term(['name'=>'Beta', 'weight'=>30]));
+        $vocabulary->terms()->save(new Term(['name'=>'Gamma', 'weight'=>20]));
+        $vocabulary->fresh();
+        $this->assertCount(3, $vocabulary->rootTerms());
+        $this->assertEquals('Alpha', $vocabulary->rootTerms()->first()->name);
+        $this->assertEquals('Beta', $vocabulary->rootTerms()->last()->name);
+    }
+
+    function test_root_terms_are_sorted_by_weight_and_then_by_name(){
+        $vocabulary = new Vocabulary(['name' => 'Alpha', 'description' => "Letters"]);
+        $vocabulary->save();
+        $vocabulary->terms()->save(new Term(['name'=>'Alpha', 'weight'=>20]));
+        $vocabulary->terms()->save(new Term(['name'=>'Beta', 'weight'=>20]));
+        $vocabulary->terms()->save(new Term(['name'=>'Gamma', 'weight'=>10]));
+        $vocabulary->fresh();
+        $this->assertCount(3, $vocabulary->rootTerms());
+        $this->assertEquals('Gamma', $vocabulary->rootTerms()->first()->name);
+        $this->assertEquals('Beta', $vocabulary->rootTerms()->last()->name);
+    }
+
     function test_unique_names(){
         factory(\Jlab\Taxonomy\Vocabulary::class)->create(['name'=>'foobar']);
 

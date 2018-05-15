@@ -25,14 +25,14 @@ class Vocabulary extends Model
 
 
     /**
-     * Return the Terms relationship ordered by weight.
+     * Return the Terms relationship ordered by Term weight.
      *
      * @return mixed
      */
     public function terms()
     {
         return $this->hasMany(Term::class, 'vocabulary_id')
-            ->orderBy('weight');
+            ->orderBy('weight')->orderBy('name');
     }
 
 
