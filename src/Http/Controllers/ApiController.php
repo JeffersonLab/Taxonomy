@@ -25,7 +25,7 @@ class ApiController extends Controller
     }
 
     public function termsCreate(TermFormRequest $request){
-        Log::debug($request);
+        //Log::debug($request);
         $item = new Term($request->input());
 
         if ($item->save()){
@@ -43,7 +43,6 @@ class ApiController extends Controller
             $item = Term::find($request->get('id'));
             if ($item) {
                 $item->fill($request->input());
-                Log::debug($request->input());
                 if ($item->save()) {
                     //return $this->response(['ddp']);
                     return $this->response($item->apiArray());
