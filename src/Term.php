@@ -9,6 +9,9 @@ namespace Jlab\Taxonomy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Collection;
+use Jlab\Taxonomy\Events\TaxonomyCreatedEvent;
+use Jlab\Taxonomy\Events\TaxonomyDeletedEvent;
+use Jlab\Taxonomy\Events\TaxonomyUpdatedEvent;
 use Kalnoy\Nestedset\NodeTrait;         // https://github.com/lazychaser/laravel-nestedset
 
 
@@ -29,7 +32,12 @@ class Term extends Model
         'weight' => 'integer',
     ];
 
-
+    // Model events
+    protected $dispatchesEvents = [
+        'created' => TaxonomyCreatedEvent::class,
+        'updated' => TaxonomyUpdatedEvent::class,
+        'deleted' => TaxonomyDeletedEvent::class,
+    ];
 
     /**
      * Answer whether the description attribute is a valid url.

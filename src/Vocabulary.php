@@ -3,6 +3,9 @@
 namespace Jlab\Taxonomy;
 
 use Illuminate\Database\Eloquent\Model;
+use Jlab\Taxonomy\Events\TaxonomyCreatedEvent;
+use Jlab\Taxonomy\Events\TaxonomyDeletedEvent;
+use Jlab\Taxonomy\Events\TaxonomyUpdatedEvent;
 
 class Vocabulary extends Model
 {
@@ -11,6 +14,12 @@ class Vocabulary extends Model
 
     public $fillable = ['name', 'description'];
 
+    // Model events
+    protected $dispatchesEvents = [
+        'created' => TaxonomyCreatedEvent::class,
+        'updated' => TaxonomyUpdatedEvent::class,
+        'deleted' => TaxonomyDeletedEvent::class,
+    ];
 
     /**
      * Validation rules
