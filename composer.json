@@ -16,9 +16,8 @@
         }
     ],
     "require": {
-      "php" : "~7.0",
-      "illuminate/support": "~5.5",
-      "lord/laroute": "2.*",
+      "php" : "^7.1",
+      "illuminate/support": "^5.5",
       "kalnoy/nestedset": "4.*"
     },
 
