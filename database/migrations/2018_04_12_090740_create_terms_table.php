@@ -7,18 +7,19 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTermsTable extends Migration
 {
     /**
-    /**
+     * /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
-        Schema::create('terms', function(Blueprint $table) {
+    public function up()
+    {
+        Schema::create('terms', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('vocabulary_id');
-            $table->string('name',80);
-            $table->string('url',1000)->nullable();
-            $table->string('description',1000)->nullable();
+            $table->string('name', 80);
+            $table->string('url', 1000)->nullable();
+            $table->string('description', 1000)->nullable();
             $table->integer('weight')->default(0);
 
 
@@ -43,10 +44,9 @@ class CreateTermsTable extends Migration
             $table->index('name');
             $table->index('vocabulary_id');
 
-            $table->unique(['vocabulary_id','name']);
+            $table->unique(['vocabulary_id', 'name']);
 
-            $table->index(['left','right','parent_id']);
-
+            $table->index(['left', 'right', 'parent_id']);
         });
     }
 
@@ -55,7 +55,8 @@ class CreateTermsTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::drop('terms');
     }
 

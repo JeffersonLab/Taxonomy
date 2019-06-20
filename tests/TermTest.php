@@ -10,16 +10,23 @@ use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;
 
 
+/**
+ * Class TermTest
+ * @package Jlab\Taxonomy\Tests
+ */
 class TermTest extends TestCase
 {
-    public function setUp()
+    /**
+     * Prepare for tests.
+     */
+    public function setUp() : void
     {
         parent::setUp();
         DB::table('terms')->delete();
     }
 
     /**
-     * A basic test example.
+     * Test ability to set and retrieve a term description.
      *
      * @return void
      */
@@ -33,12 +40,18 @@ class TermTest extends TestCase
         $this->assertEquals($term->description, $found->description);
     }
 
+    /**
+     * Test relationship with vocabulary
+     */
     function test_it_can_retrieve_vocabulary(){
 
         $term = factory(Term::class)->create();
         $this->assertInstanceOf(Vocabulary::class, $term->vocabulary);
     }
 
+    /**
+     * Test validation rules enforcement,
+     */
     function test_validator_rules(){
 
         $vocab = factory(Vocabulary::class)->create();
@@ -91,6 +104,10 @@ class TermTest extends TestCase
     }
 
 
+    /**
+     * Test the functionality that accepts a text block containing
+     * tag data from which to create a set of terms.
+     */
     function test_it_can_make_terms_from_text(){
         $vocab1 = factory(Vocabulary::class)->create();
         $test1 = "Term1 | Desc Number One \n Term2 | Desc Number Two";
@@ -106,6 +123,9 @@ class TermTest extends TestCase
         $this->assertCount(2, $vocab1->terms);
     }
 
+    /**
+     * Test that a blank description is permitted.
+     */
     function test_terms_from_text_descriptions_are_optional(){
         $vocab1 = factory(Vocabulary::class)->create();
         $test1 = "Term1 \n Term2 ";
@@ -122,6 +142,11 @@ class TermTest extends TestCase
     }
 
 
+    /**
+     * Test that child terms can be created via text block.
+     *
+     * @throws \Throwable
+     */
     function test_it_can_make_child_terms_from_text(){
         $parent = factory(Term::class)->create();
         $test1 = "Term1 | Desc Number One \n Term2 | Desc Number Two";
@@ -138,6 +163,9 @@ class TermTest extends TestCase
     }
 
 
+    /**
+     *  Test that child term ordering defaults to insertion order.
+     */
     function test_children_are_sorted_by_insertion_order(){
         $parent = factory(Term::class)->create();
         $parent->children()->save(new Term(['name'=>'Alpha','weight'=>30,'vocabulary_id'=>$parent->vocabulary_id]));
@@ -149,9 +177,20 @@ class TermTest extends TestCase
         $this->assertEquals('Gamma', $parent->children->last()->name);
     }
 
+    /**
+     * Test that the is_active attribute can be set and retrieved.
+     */
+    function test_it_can_make_inactive(){
+        $term = factory(Term::class)->create();
+        $this->assertTrue($term->isActive());
+        $term->is_active = false;
+        $this->assertTrue($term->save());
+        $term->fresh();
+        $this->assertFalse($term->isActive());
+    }
 
     /**
-     * Exercise rule that term names must be unique within
+     * Exercises the rule that term names must be unique within
      * a vocabulary.
      */
     function test_unique_names_in_vocabulary(){
