@@ -24,7 +24,7 @@ class AlterTableTermsAddIsActiveColumn extends Migration
      */
     public function down()
     {
-        Schema::table('users', function ($table) {
+        Schema::table('terms', function ($table) {
             $table->dropColumn('is_active');
         });
     }
