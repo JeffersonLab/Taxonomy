@@ -3,43 +3,43 @@
 // Note that earlier routes get a preference.
 
 Route::get('taxonomy/terms', [
-'as' => 'api.terms',
+'as' => 'jlab.taxonomy.api.terms',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@terms'
 ]);
 
 Route::post('taxonomy/terms', [
-'as' => 'api.terms.create',
+'as' => 'jlab.taxonomy.api.terms.create',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsCreate'
 ]);
 
 Route::post('taxonomy/terms/sort', [
-'as' => 'api.terms.sort',
+'as' => 'jlab.taxonomy.api.terms.sort',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsSort'
 ]);
 
 
 Route::put('taxonomy/terms/{id}', [
-'as' => 'api.terms.update',
+'as' => 'jlab.taxonomy.api.terms.update',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsUpdate'
 ]);
 
 Route::delete('taxonomy/terms/{id}', [
-    'as' => 'api.terms.delete',
+    'as' => 'jlab.taxonomy.api.terms.delete',
     'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsDelete'
 ]);
 
 Route::put('taxonomy/terms/{id}/users', [
-'as' => 'api.terms.users',
+'as' => 'jlab.taxonomy.api.terms.users',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termUsers'
 ]);
 
 Route::get('taxonomy/terms/{id}', [
-'as' => 'api.terms.item',
+'as' => 'jlab.taxonomy.api.terms.item',
 'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@termsItem'
 ]);
 
 Route::get('taxonomy/forms', [
-    'as' => 'api.forms',
+    'as' => 'jlab.taxonomy.api.forms',
     'uses' => 'Jlab\Taxonomy\Http\Controllers\ApiController@forms'
 ]);
 
