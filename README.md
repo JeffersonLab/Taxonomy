@@ -1,4 +1,5 @@
 # Taxonomy
+  
 
 This is a laravel package implementing a minimal taxonomy system.  It is patterned loosely after the 
 [Drupal Taxonomy System](https://www.drupal.org/docs/7/organizing-content-with-taxonomies/about-taxonomies).
@@ -13,6 +14,14 @@ below taken from the Drupal documentation:
 * **Term = Jazz**
   *  Sub-term = Swing
   *  Sub-term = Fusion 
+
+
+## Compatibility
+
+| Laravel Version | Taxonomy Version |
+| ----- | ----- |
+|7.x | 3.x |
+|5.x | 2.x |
 
 
 ## Prerequisites
