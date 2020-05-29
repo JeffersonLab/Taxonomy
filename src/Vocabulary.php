@@ -28,7 +28,7 @@ class Vocabulary extends Model
      * @var array
      */
     public static $rules = array(
-        'name' => 'required|max:80|unique:vocabularies,name,id',
+        'name' => 'required|max:80|unique:vocabularies',
         'description' => 'max:1000',
     );
 
