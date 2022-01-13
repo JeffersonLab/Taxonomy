@@ -17,8 +17,8 @@
     ],
     "require": {
       "php" : "^7.1",
-      "illuminate/support": "^5.5",
-      "kalnoy/nestedset": "4.*"
+      "illuminate/support": "^6.0",
+      "kalnoy/nestedset": "^5.0"
     },
 
     "require-dev": {
