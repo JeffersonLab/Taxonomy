@@ -19,9 +19,10 @@ below taken from the Drupal documentation:
 ## Compatibility
 
 | Laravel Version | Taxonomy Version |
-| ----- | ----- |
-|7.x | 3.x |
-|5.x | 2.x |
+|-----------------|------------------|
+| 8.43+           | 3.1              |
+| 7.x             | 3.x              |
+| 5.x             | 2.x              |
 
 
 ## Prerequisites
