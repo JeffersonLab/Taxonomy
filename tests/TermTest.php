@@ -1,6 +1,6 @@
 <?php
 
-namespace Jlab\Taxonomy\Tests;
+namespace Tests;
 
 use Jlab\Taxonomy\Term;
 use Jlab\Taxonomy\Vocabulary;
