@@ -1,35 +1,15 @@
-# For more information: https://laravel.com/docs/sail
-version: '3'
 services:
-    laravel.test:
-        build:
-            context: ./docker/8.1
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-8.1/app
+    test:
+        image: 'jeffersonlab/cedlib:1.2'
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
-            - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+            - '80:80'
+            - '443:443'
         environment:
             WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
             XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
             XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
         volumes:
             - '.:/var/www/html'
-        networks:
-            - sail
 
-networks:
-    sail:
-        driver: bridge
-volumes:
-    sail-mysql:
-        driver: local
-    sail-redis:
-        driver: local
-    sail-meilisearch:
-        driver: local
